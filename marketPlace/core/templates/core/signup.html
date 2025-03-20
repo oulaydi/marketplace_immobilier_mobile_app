@@ -1,0 +1,47 @@
+{% extends "core/base.html" %}
+
+{% block title %}S'inscrire{% endblock %}
+
+{% block content %}
+
+    <div class="w-1/2 mx-auto my-6 p-6 bg-gray-100 rounded-xl shadow-lg">
+        <h1 class="text-3xl font-semibold mb-6">S'inscrire</h1>
+
+        <form action="." method="post" class="space-y-6">
+            {% csrf_token %}
+
+            <div class="space-y-2">
+                <label for="username" class="block font-semibold">Nom d'utilisateur</label>
+                {{ form.username }}
+            </div>
+            
+            <div class="space-y-2">
+                <label for="email" class="block font-semibold">Adresse email</label>
+                {{ form.email }}
+            </div>
+            
+            <div class="space-y-2">
+                <label for="password1" class="block font-semibold">Mot de passe</label>
+                {{ form.password1 }}
+            </div>
+            
+            <div class="space-y-2">
+                <label for="password2" class="block font-semibold">Confirmer le mot de passe</label>
+                {{ form.password2 }}
+            </div>
+
+            {% if form.errors or form.non_field_errors %}
+                <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                    {% for field in form %}
+                        {{ field.errors }}
+                    {% endfor %}
+
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <button type="submit" class="w-full bg-teal-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-teal-700">S'inscrire</button>
+        
+        </form>
+    </div>
+{% endblock %}
