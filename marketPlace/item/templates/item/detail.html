@@ -5,7 +5,7 @@
 
 {% block content %}
 
-    <div class="grid grid-cols-5 gap-6">
+    <div class="grid grid-cols-5 gap-6 p-6">
         <div class="col-span-3">
             <img src="{{ item.image.url }}" class="w-full h-96 object-cover object-center rounded-lg" alt="{{ item.title }}">
         </div>
@@ -23,7 +23,16 @@
             {% else %}
                 <p class="mb-6 text-lg font-semibold">Etat: Disponible</p>
             {% endif %}
-            <button class="inline-block mt-6 py-3 px-6 text-lg font-semibold bg-teal-500 text-white rounded-lg hover:bg-teal-700">Contacter</button>
+
+            {% if request.user == item.created_by %}
+                <div  class="mt-6 p-6 bg-white rounded-xl">
+                    <p>Vous êtes le propriétaire de cet article.</p>
+                    <a href="{% url 'item:edit' item.id %}" class="inline-block mt-6 py-3 px-6 text-lg font-semibold bg-teal-500 text-white rounded-lg hover:bg-teal-700">Modifier</a>
+                    <a href="{% url 'item:delete' item.id %}" class="inline-block mt-6 py-3 px-6 text-lg font-semibold bg-red-500 text-white rounded-lg hover:bg-red-700">Supprimer</a>
+                </div>
+            {% else %}
+                <button class="inline-block mt-6 py-3 px-6 text-lg font-semibold bg-teal-500 text-white rounded-lg hover:bg-teal-700">Contacter</button>
+            {% endif %}
         </div>
     </div>
 

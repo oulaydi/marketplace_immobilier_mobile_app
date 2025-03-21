@@ -3,9 +3,8 @@ from . import views
 app_name = 'item'
 
 urlpatterns = [
+    path('new/', views.new, name='new'),
     path('<int:pk>/', views.detail, name='detail'),
-    # path('', views.index, name='index'),
-    # path('add/', views.add, name='add'),
-    # path('edit/<int:id>/', views.edit, name='edit'),
-    # path('delete/<int:id>/', views.delete, name='delete'),
+    path('<int:pk>/edit/', views.edit, name='edit'),
+    path('<int:pk>/delete/', views.delete, name='delete'),
 ]
