@@ -6,3 +6,6 @@ envdb.sqlite3
 .DS_Store
 */.DS_Store
 */*/.DS_Store
+db.sqlite3
+*/db.sqlite3
+*/*/db.sqlite3
