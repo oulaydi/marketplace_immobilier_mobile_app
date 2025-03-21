@@ -43,5 +43,11 @@
             <button type="submit" class="w-full bg-teal-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-teal-700">S'inscrire</button>
         
         </form>
+
+        <p class="mt-4 text-center">
+            Vous avez déjà un compte ? 
+            <a href="{% url 'core:login' %}" class="text-teal-500 hover:underline">Connectez-vous ici</a>.
+        </p>
+
     </div>
 {% endblock %}
