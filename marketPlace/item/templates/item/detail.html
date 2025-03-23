@@ -31,7 +31,7 @@
                     <a href="{% url 'item:delete' item.id %}" class="inline-block mt-6 py-3 px-6 text-lg font-semibold bg-red-500 text-white rounded-lg hover:bg-red-700">Supprimer</a>
                 </div>
             {% else %}
-                <button class="inline-block mt-6 py-3 px-6 text-lg font-semibold bg-teal-500 text-white rounded-lg hover:bg-teal-700">Contacter</button>
+                <a href="{% url 'conversation:new' item.id %}" class="inline-block mt-6 py-3 px-6 text-lg font-semibold bg-teal-500 text-white rounded-lg hover:bg-teal-700">Contacter</a>
             {% endif %}
         </div>
     </div>
@@ -55,8 +55,8 @@
                         <p class="mt-2 text-lg font-semibold">{{ item.price }} MAD</p>
                     </div>
                 </div>
+            {% endfor %}
             </div>
         </div>
     </div>
-        {% endfor %}
 {% endblock %}
