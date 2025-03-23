@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>{% block title %}{% endblock %} | ImmoMarket</title>
     
@@ -23,21 +25,32 @@
     
 </head>
 <body>
-
     <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200">
-        <a href="/" class="text-xl font-semibold">ImmoMarket</a>
-
+        <div class="flex items-center space-x-4">
+            <img src="{% static 'img/logo.png' %}" alt="ImmoMarket Logo" class="h-10">
+            <a href="/" class="text-xl font-semibold">ImmoMarket</a>
+        </div>
         <div class="space-x-6">
             <a href="{% url 'item:new' %}" class="text-lg font-semibold hover:text-gray-500 ">Nouvel article</a>
             <a href="{% url 'item:items' %}" class="text-lg font-semibold hover:text-gray-500 ">Parcourir</a>
         
             {% if request.user.is_authenticated %}
-                <a href="{% url 'core:signup' %}" class="bg-teal-500 font-semibold text-white px-6 py-3 text-lg rounded-xl hover:bg-teal-700 ">Messages</a>
+                <a href="{% url 'conversation:inbox' %}" class="bg-teal-500 font-semibold text-white px-6 py-3 text-lg rounded-xl hover:bg-teal-700 ">Messages</a>
                 <a href="{% url 'dashboard:index' %}" class="bg-gray-500 font-semibold text-white px-6 py-3 text-lg rounded-xl hover:bg-gray-700 ">Tableau de bord</a>
             {% else %}
                 <a href="{% url 'core:signup' %}" class="bg-teal-500 font-semibold text-white px-6 py-3 text-lg rounded-xl hover:bg-teal-700 ">S'inscrire</a>
                 <a href="{% url 'core:login' %}" class="bg-gray-500 font-semibold text-white px-6 py-3 text-lg rounded-xl hover:bg-gray-700 ">Connexion</a>
             {% endif %}
+
+            <div class="flex justify-end mt-6 pr-4">
+                <a href="{% url 'core:logout' %}" class="flex justify-end text-gray-600 hover:text-red-500">
+                    <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-10V5m0 6H3" />
+                    </svg>
+                    Déconnexion
+                </a>
+            </div>
+        
         </div>
 
     </nav>

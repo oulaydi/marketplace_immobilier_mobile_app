@@ -35,22 +35,30 @@
                 <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
                     <a href="#">
                         {% if category.name == "Appartement" %}
-                            <svg class="w-12 h-12 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10l9-9m0 0l9 9m-9-9v18"/>
-                            </svg>
-                        {% elif category.name == "Maison" %}
-                            <svg class="w-12 h-12 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 10l-7-7m0 0L5 10m7-7v18"/>
-                            </svg>
-                        {% elif category.name == "Terrain" %}
-                            <svg class="w-12 h-12 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l16-8M4 8l16 8"/>
-                            </svg>
-                        {% else %}
-                            <svg class="w-12 h-12 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                            </svg>
-                        {% endif %}
+                            <a href="{% url 'item:items' %}?category={{ category.id }}">    
+                                <svg class="w-12 h-12 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10l9-9m0 0l9 9m-9-9v18"/>
+                                </svg>
+                            </a>
+                            {% elif category.name == "Maison" %}
+                            <a href="{% url 'item:items' %}?category={{ category.id }}">    
+                                <svg class="w-12 h-12 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 10l-7-7m0 0L5 10m7-7v18"/>
+                                </svg>
+                            </a>
+                            {% elif category.name == "Terrain" %}
+                            <a href="{% url 'item:items' %}?category={{ category.id }}">    
+                                <svg class="w-12 h-12 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l16-8M4 8l16 8"/>
+                                </svg>
+                            </a>
+                            {% else %}
+                            <a href="{% url 'item:items' %}?category={{ category.id }}">    
+                                <svg class="w-12 h-12 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </a>
+                            {% endif %}
                     </a>
                     <h3 class="text-lg font-semibold mt-4">{{ category.name }}</h3>
                     <p class="mt-2 text-sm text-gray-600 text-center">{{ category.description }}</p>
