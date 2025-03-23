@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<div class="p-12 bg-gray-100 rounded-xl">
+    <h1 class="text-2xl font-semibold mb-4">Démarrer une conversation avec <u>{{ item.created_by.username }}</u></h1>
+    <p>Vous êtes sur le point de démarrer une conversation à propos de <strong>{{ item.name }}</strong>.</p>
+
+    <form method="post" action="." class="mt-6">
+        {% csrf_token %}
+
+        <div class="space-y-4">
+            {{ form.as_p }}
+        </div>
+
+        {% if form.errors or form.non_field_errors %}
+            <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <button class="mt-4 py-2 px-4 bg-teal-500 text-white rounded-lg hover:bg-teal-700 inline-block text-center">
+            Démarrer la conversation
+        </button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="p-6 bg-gray-100 rounded-xl">
+    <h1 class="text-3xl font-semibold mb-6">{{ title }} | {{ conversation.item.name }}</h1>
+
+    <!-- Messages -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6 space-y-4">
+        {% for message in conversation.messages.all %}
+            <div class="flex {% if message.created_by == request.user %}justify-end{% endif %}">
+                <div class="p-4 rounded-lg {% if message.created_by == request.user %}bg-teal-500 text-white{% else %}bg-gray-200 text-gray-800{% endif %}">
+                    <p class="text-sm font-medium">@ {{ message.created_by.username }}</p>
+                    <p class="text-sm">{{ message.content }}</p>
+                    <p class="text-xs text-black mt-1">{{ message.created_at|date:"d M Y, H:i" }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center text-gray-600">Aucun message pour le moment.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Message Form -->
+    <form method="post" class="bg-white p-6 rounded-lg shadow-md">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="mt-4 py-2 px-4 bg-teal-500 text-white rounded-lg hover:bg-teal-700">
+            Envoyer
+        </button>
+    </form>
+</div>
+{% endblock %}

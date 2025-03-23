@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+<div class="p-6 bg-gray-100 rounded-xl">
+    <h1 class="text-3xl font-semibold mb-6">{{title}}</h1>
+
+    {% if conversations %}
+        <div class="space-y-6">
+            {% for conversation in conversations %}
+                <a href="{% url 'conversation:detail' conversation.id %}" class="block">
+                    <div class="p-6 flex bg-white rounded-xl shadow-md hover:bg-gray-50 transition">
+                        <!-- Item Image -->
+                        <div class="pr-6">
+                            <img src="{{ conversation.item.image.url }}" alt="{{ conversation.item.name }}" class="w-20 h-20 object-cover rounded-xl">
+                        </div>
+
+                        <!-- Conversation Details -->
+                        <div class="flex-1">
+                            <h2 class="text-lg font-semibold text-gray-800">
+                                {{ conversation.item.name }}
+                            </h2>
+                            <p class="text-sm text-gray-600">
+                                Avec: 
+                                <span class="font-medium">
+                                    {{ conversation.other_user.username }}
+                                </span>
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1">
+                                Dernier message: 
+                                {% if conversation.messages.last %}
+                                    {{ conversation.messages.last.content|truncatechars:50 }}
+                                {% else %}
+                                    Aucun message
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <!-- Last Modified Date -->
+                        <div class="text-sm text-gray-400 text-right">
+                            {{ conversation.modified_at|date:"d M Y, H:i" }}
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-gray-600">Vous n'avez aucune conversation pour le moment.</p>
+    {% endif %}
+</div>
+{% endblock %}
