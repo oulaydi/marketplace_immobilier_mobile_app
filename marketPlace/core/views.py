@@ -32,3 +32,7 @@ def signup(request):
 
 def login(request):
     return render(request, 'core/login.html')
+
+
+def logout(request):
+    return redirect('core:login')
